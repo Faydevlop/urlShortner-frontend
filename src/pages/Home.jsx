@@ -13,25 +13,7 @@ const Home = () => {
   const [urlHistory, setUrlHistory] = useState([])
   const [copiedStates, setCopiedStates] = useState({})
 
-  useEffect(() => {
-    const fetchURLs = async () => {
-      try {
-        // Adjusted the dynamic path with the proper `user._id`
-        const response = await axios.get(`https://urlshortner.moon-cart.shop/getURLs/${user._id}`,{
-          headers: {
-            Authorization: `Bearer ${token}`, // Attach token
-        },
-        });
-        
-        // Update the state with the fetched data
-        setUrlHistory(response.data.links);
-      } catch (error) {
-        console.error('Error fetching URLs:', error);
-      }
-    };
-
-    fetchURLs(); // Call the async function inside useEffect
-  }, [user._id]); // Include `user._id` in the dependency array
+ 
 
   const handleClick = async (e) => {
     e.preventDefault()
@@ -60,6 +42,27 @@ const Home = () => {
 
     setLoading(false)
   }
+
+
+  useEffect(() => {
+    const fetchURLs = async () => {
+      try {
+        // Adjusted the dynamic path with the proper `user._id`
+        const response = await axios.get(`https://urlshortner.moon-cart.shop/getURLs/${user._id}`,{
+          headers: {
+            Authorization: `Bearer ${token}`, // Attach token
+        },
+        });
+        
+        // Update the state with the fetched data
+        setUrlHistory(response.data.links);
+      } catch (error) {
+        console.error('Error fetching URLs:', error);
+      }
+    };
+
+    fetchURLs(); // Call the async function inside useEffect
+  }, [handleClick]); // Include `user._id` in the dependency array
 
   const copyToClipboard = useCallback((text, index) => {
     navigator.clipboard.writeText(text).then(() => {
