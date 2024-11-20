@@ -62,7 +62,7 @@ const Home = () => {
     };
 
     fetchURLs(); // Call the async function inside useEffect
-  }, [handleClick]); // Include `user._id` in the dependency array
+  }, []); // Include `user._id` in the dependency array
 
   const copyToClipboard = useCallback((text, index) => {
     navigator.clipboard.writeText(text).then(() => {
