@@ -17,7 +17,7 @@ const Home = () => {
     const fetchURLs = async () => {
       try {
         // Adjusted the dynamic path with the proper `user._id`
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/getURLs/${user._id}`,{
+        const response = await axios.get(`https://urlshortner.moon-cart.shop/getURLs/${user._id}`,{
           headers: {
             Authorization: `Bearer ${token}`, // Attach token
         },
@@ -38,7 +38,7 @@ const Home = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/shortURL`, { url, userId: user._id },{
+      const response = await axios.post(`https://urlshortner.moon-cart.shop/shortURL`, { url, userId: user._id },{
         headers: {
           Authorization: `Bearer ${token}`, // Attach token
       },

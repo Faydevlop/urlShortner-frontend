@@ -5,7 +5,7 @@ import { logout } from '../redux/feature/userAuthSlice'; // Import the logout ac
 axios.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.status === 401 || error.response.status === 403) {
+        if (error.response.status === 403) {
             // Token is invalid or expired, so log the user out
             store.dispatch(logout());
         }

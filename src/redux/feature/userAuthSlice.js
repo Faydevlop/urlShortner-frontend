@@ -10,7 +10,7 @@ export const registerAuth = createAsyncThunk(
         try {
             console.log(userData);
             
-            let response = await axios.post(`${import.meta.env.VITE_BASE_URL}/signup`,userData)
+            let response = await axios.post(`https://urlshortner.moon-cart.shop/signup`,userData)
             return response.data
             
         } catch (error) {
@@ -28,7 +28,7 @@ export const loginAuth = createAsyncThunk(
     async(userData,{rejectWithValue})=>{
         try {
 
-            let response = await axios.post(`${import.meta.env.VITE_BASE_URL}/login`,userData)
+            let response = await axios.post(`https://urlshortner.moon-cart.shop/login`,userData)
             return response.data
             
         } catch (error) {
