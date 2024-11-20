@@ -8,7 +8,7 @@ const Home = () => {
   const [url, setUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
   const [loading, setLoading] = useState(false)
-  const {user} = useSelector((state)=>state.auth)
+  const {user,token} = useSelector((state)=>state.auth)
 
   const [urlHistory, setUrlHistory] = useState([])
   const [copiedStates, setCopiedStates] = useState({})
@@ -17,7 +17,11 @@ const Home = () => {
     const fetchURLs = async () => {
       try {
         // Adjusted the dynamic path with the proper `user._id`
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/getURLs/${user._id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/getURLs/${user._id}`,{
+          headers: {
+            Authorization: `Bearer ${token}`, // Attach token
+        },
+        });
         
         // Update the state with the fetched data
         setUrlHistory(response.data.links);
@@ -34,7 +38,11 @@ const Home = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/shortURL`, { url, userId: user._id })
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/shortURL`, { url, userId: user._id },{
+        headers: {
+          Authorization: `Bearer ${token}`, // Attach token
+      },
+      })
       // Update the shortUrl state when response comes
       setShortUrl(response.data.shortenedUrl) 
       
