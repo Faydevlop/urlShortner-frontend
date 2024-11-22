@@ -14,7 +14,7 @@ const UserRoutes = () => {
   return (
     <Suspense fallback={<LoadingSpinner/>}>
         <Routes>
-            <Route path="" element={ <Navigate to='/home' />} />
+            <Route path="" element={ <Navigate to='/login' />} />
             <Route path="login" element={isAuthenticated ?  <Navigate to='/home' /> :<UserLogin/>} />
             <Route path="signup" element={isAuthenticated ?  <Navigate to='/home' /> :<UserSignup/>} />
             <Route path="Home" element={isAuthenticated ?  <Home /> :<Navigate to='/login' />} />
