@@ -10,7 +10,7 @@ export const registerAuth = createAsyncThunk(
         try {
             console.log(userData);
             
-            let response = await axios.post(`https://url.moon-cart.shop/signup`,userData)
+            let response = await axios.post(`https://url.fayisnambiyath.in/signup`,userData)
             return response.data
             
         } catch (error) {
@@ -23,12 +23,14 @@ export const registerAuth = createAsyncThunk(
         }
     }
 )
+
+
 export const loginAuth = createAsyncThunk(
     'auth/user/login',
     async(userData,{rejectWithValue})=>{
         try {
 
-            let response = await axios.post(`https://url.moon-cart.shop/login`,userData)
+            let response = await axios.post(`https://url.fayisnambiyath.in/login`,userData)
             return response.data
             
         } catch (error) {
@@ -53,7 +55,8 @@ const userAuthSlice = createSlice({
         user:null,
         error:null,
         loading:false,
-        isAuthenticated:false
+        isAuthenticated:false,
+        data:null
     },
     reducers:{
         logout(state){
@@ -64,6 +67,10 @@ const userAuthSlice = createSlice({
         clearError(state) {
             state.error = null;
           },
+
+        setData(state){
+            state.data = 'hello'
+        }
        
     },
     extraReducers:(builder)=>{
@@ -105,4 +112,5 @@ const userAuthSlice = createSlice({
 
 export const { clearError } = userAuthSlice.actions;
 export const { logout } = userAuthSlice.actions;
+export const {setData} = userAuthSlice.actions
 export const authReducer = userAuthSlice.reducer;

@@ -20,7 +20,7 @@ const Home = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post(`https://url.moon-cart.shop/shortURL`, { url, userId: user._id },{
+      const response = await axios.post(`https://url.fayisnambiyath.in/shortURL`, { url, userId: user._id },{
         headers: {
           Authorization: `Bearer ${token}`, // Attach token
       },
@@ -48,7 +48,7 @@ const Home = () => {
     const fetchURLs = async () => {
       try {
         // Adjusted the dynamic path with the proper `user._id`
-        const response = await axios.get(`https://url.moon-cart.shop/getURLs/${user._id}`,{
+        const response = await axios.get(`https://url.fayisnambiyath.in/getURLs/${user._id}`,{
           headers: {
             Authorization: `Bearer ${token}`, // Attach token
         },

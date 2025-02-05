@@ -5,13 +5,17 @@ import { loginAuth } from '../redux/feature/userAuthSlice'; // Replace with your
 import { clearError } from '../redux/feature/userAuthSlice';
 import { useNavigate } from 'react-router-dom';
 
+
 const LoginPage = () => {
   // State for form data and validation errors
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const {user,error,loading} = useSelector((state)=>state.auth)
+  
+  const {user,error,loading,data} = useSelector((state)=>state.auth)
+
+
 
   // Handle input changes
   const handleChange = (e) => {
@@ -73,6 +77,7 @@ const LoginPage = () => {
   return (
     <div className="h-screen overflow-hidden">
       <Header />
+     
       <div className="flex h-screen flex-col items-center justify-center bg-[#1a1b1e] px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md space-y-6">
           <div className="text-center">
@@ -81,6 +86,7 @@ const LoginPage = () => {
           </div>
           {error && <div className="error-message text-center text-red-500 ">{error}</div>}
           <div className="rounded-lg bg-[#2c2d31] p-8 shadow-lg">
+          
          
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
